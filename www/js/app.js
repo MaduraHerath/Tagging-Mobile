@@ -1,73 +1,57 @@
-// Ionic Starter App
+angular.module('taggingApp', ['ionic'])
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
-
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
 
+      console.log("Standing by for NFC...");
+
+      nfc.addTagDiscoveredListener(function(event){
+        var tagUid = nfc.bytesToHexString(event.tag.id).toUpperCase();
+        $rootScope.$broadcast('TAG-DETECTED', { uid: tagUid });
+
+      }, function(success){
+        console.log("Listening for tags...");
+      });
+
+      nfc.addNdefListener(function(event){
+        var tagUid = nfc.bytesToHexString(event.tag.id).toUpperCase();
+        $rootScope.$broadcast('TAG-DETECTED', { uid: tagUid });
+
+      }, function(success){
+        console.log("Listening for NDEF...");
+      }, function(error){
+        console.log("NDEF listener failure...");
+        console.log(error);
+      });
+
     }
     if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, configProvider) {
+  configProvider.locals.baseUrl = "http://ec2-54-186-114-41.us-west-2.compute.amazonaws.com:3000/";
+
   $stateProvider
-
-    .state('app', {
+  .state('app', {
     url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    abstract: true
   })
-
-  .state('app.search', {
+  .state('search', {
     url: '/search',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
-      }
-    }
-  })
-
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+        templateUrl: 'templates/search.html',
+        controller: 'ProductCtrl'
       }
     }
   });
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/search');
+  $urlRouterProvider.otherwise('/search');
 });

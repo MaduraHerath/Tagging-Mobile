@@ -2,72 +2,55 @@
 	<div class="bar bar-header bar-positive item-input-inset">
   		<label class="item-input-wrapper">
    	 		<i class="icon ion-ios-search placeholder-icon"></i>
-    		<input type="search" placeholder="Search">
+    		<input ng-model="query" type="search" placeholder="Search">
   		</label>
-  		<button class="button button-clear">
-    		Cancel
+  		<button ng-click="search()" class="button button-clear">
+    		Search
   		</button>
 	</div>
 
 
   <ion-content class="has-header" overflow-scroll="true" scrollbar-y="true" class = "padding-top padding dash-content">
-<!--  		<div class="row">
-		<div class="col">
-			<div class="bottom">
-  				<div class="pulse1"></div>
-  				<div class="pulse2"></div>
-  				<div class="icon1"></div>
-			</div>
-		</div>
-		</div>  -->
-
-		<div class="row">
+		<div class="row" ng-if="product.id">
 			<div class="col">
 				<div class="card">
 	  				<div class="item item-divider">
-	   					Product Name
+	   					{{ product.name }}
 	  				</div>
 	  				<div class="item item-body">
 	  					<div class="pulse1"></div>
-	    				<div class="icon1"><img class="full-image" src="../img/package.png"></div>
+	    				<div class="icon1"><img class="full-image" src="{{product.image}}"></div>
 	    				<div class="pulse2"></div>
 	    			</div>
-	  				<div class="item item-text-wrap">
-	    				<label class="col col-50">
-	    					<input type="number" placeholder="Line Number">
-	    				</label>
-	    				<label class="col col-50">
-	    					<input type="number" placeholder="Shell Number">
-	    				</label>
-	  				</div>
-	  				<div class="item item-divider">
-	   					Stock Status
-	  				</div>
 				</div>
-	
+
 			</div>
-	
+
+		</div>
+		<div ng-if="!product.id" class="row">
+			<div class="col">
+				<h3> Search for a product by name or id </h3>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col">
-				<h2>54</h2>
-				<h4>Count</h4>
+				<h2> {{ uid }} </h2>
+				<h4> NFC UID </h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<button ng-click="tagProduct()" class="button button-block button-positive">
+  					Tag
+				</button>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col">
 				<button class="button button-block button-positive">
-  					Start
+  					Update Inventory
 				</button>
 			</div>
-			<div class="col">
-				<button class="button button-block button-assertive"> 
-					Reset
-				</button>
-			</div>
-				
 		</div>
-		
-
     </ion-content>
 </ion-view>

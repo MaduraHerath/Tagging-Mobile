@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('taggingApp')
 .factory('NfcService', function($state, $rootScope, $ionicPlatform, RetailService){
 	var o = {};
 	var product = {};
