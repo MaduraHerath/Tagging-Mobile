@@ -1,5 +1,5 @@
 angular.module('taggingApp')
-.controller('LoginCtrl',function($state, $scope, $ionicPopup, LoginService){
+.controller('LoginCtrl',function($state, $scope, $ionicPopup, LoginService, ionicToast){
 	$scope.user = {
 		uname: "",
 		passwd: ""
@@ -17,7 +17,7 @@ angular.module('taggingApp')
 			}
 		}, function(err){
 			console.log("Failed login");
-			//ionicToast.show('Invalid Login!', 'bottom', false, 2500);
+			ionicToast.show('Invalid Login!', 'bottom', false, 2500);
 		});
 	}
 

@@ -25,8 +25,11 @@ angular.module('taggingApp')
 
 		$http.get(baseUrl + 'api/product/find/name/' + name).then(function(response){
 			console.log(response);
-			response.data[0].image = baseUrl + response.data[0].image;
-			deferred.resolve(response.data[0]);
+			response.data.map(function(product){
+				product.image = baseUrl + product.image;
+			});
+			console.log(response.data);
+			deferred.resolve(response.data);
 		}, function(err){
 			deferred.reject({ status: 'ERROR', error: err });
 		});
@@ -38,7 +41,7 @@ angular.module('taggingApp')
 		var deferred = $q.defer();
 
 		$http.post(baseUrl + 'api/product/insert/tag',{ prodId: prodId, uid: uid }).then(function(response){
-			console.log(JSON.stringify(response));
+			console.log(response);
 			deferred.resolve({ status: 'SUCCES' });
 		}, function(err){
 			deferred.reject({ status: 'ERROR', error: err });

@@ -1,4 +1,4 @@
-angular.module('taggingApp', ['ionic'])
+angular.module('taggingApp', ['ionic', 'ionic-toast'])
 .run(function($ionicPlatform, $rootScope, $state, LoginService) {
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins.Keyboard) {

@@ -1,0 +1,12 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Pick a product</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+      	<ion-item ng-click="select($index)" ng-repeat="product in products">
+      		{{product.name}}
+      	</ion-item>
+      </ion-list>
+    </ion-content>
+</ion-modal-view>
