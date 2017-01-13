@@ -1,15 +1,15 @@
-angular.module('starter')
-.factory('InterceptorService', function($q){
+angular.module('taggingApp')
+.factory('InterceptorService', function($rootScope){
 	return{
 		request: function(config){
-			var deferred = $q.defer();
+			var token = $rootScope.token;
 
-			chrome.storage.local.get("token", function(token){
-				config.headers['token'] = token.token;
-				deferred.resolve(config);
-			});
+			if(!token || token == ""){
+				return config;
+			}
 
-			return deferred.promise;
+			config.headers['token'] = token;
+			return config;
 		}
 	}
 })

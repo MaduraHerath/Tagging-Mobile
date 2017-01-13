@@ -22,9 +22,8 @@ angular.module('taggingApp')
 
 	o.getProductByName = function(name){
 		var deferred = $q.defer();
-		var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0dXMiOiJPSyIsInVuYW1lIjoiam9obkBiYWJ5Iiwic3RhZmZfaWQiOjEwLCJmbmFtZSI6IkpvaG4iLCJsbmFtZSI6IlNwaXR6ZXIiLCJ0eXBlIjoiY3NoIiwiYnJhbmNoSWQiOjEsImJyYW5jaE5hbWUiOiJLT0hVV0FMQSIsImlhdCI6MTQ4NDAyMTU5MiwiaXNzIjoidDM1LWFwaSJ9.ghqSl9ky6x2BWXna33l3yDVnX8tYtXKmSKyt3l-D7fo";
 
-		$http.get(baseUrl + 'api/product/find/name/' + name, { headers: { token: token }}).then(function(response){
+		$http.get(baseUrl + 'api/product/find/name/' + name).then(function(response){
 			console.log(response);
 			response.data[0].image = baseUrl + response.data[0].image;
 			deferred.resolve(response.data[0]);
@@ -37,9 +36,8 @@ angular.module('taggingApp')
 
 	o.tagProduct = function(prodId, uid){
 		var deferred = $q.defer();
-		var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0dXMiOiJPSyIsInVuYW1lIjoiam9obkBiYWJ5Iiwic3RhZmZfaWQiOjEwLCJmbmFtZSI6IkpvaG4iLCJsbmFtZSI6IlNwaXR6ZXIiLCJ0eXBlIjoiY3NoIiwiYnJhbmNoSWQiOjEsImJyYW5jaE5hbWUiOiJLT0hVV0FMQSIsImlhdCI6MTQ4NDAyMTU5MiwiaXNzIjoidDM1LWFwaSJ9.ghqSl9ky6x2BWXna33l3yDVnX8tYtXKmSKyt3l-D7fo";
 
-		$http.post(baseUrl + 'api/product/insert/tag',{ prodId: prodId, uid: uid }, { headers: { token: token }}).then(function(response){
+		$http.post(baseUrl + 'api/product/insert/tag',{ prodId: prodId, uid: uid }).then(function(response){
 			console.log(JSON.stringify(response));
 			deferred.resolve({ status: 'SUCCES' });
 		}, function(err){
