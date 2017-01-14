@@ -49,7 +49,6 @@ body {
     position: relative; 
     width: 180px;
     height: 180px;
-    background: url(http://www.cssauthor.com/wp-content/uploads/2013/07/Email-iOS7-Icon-cssauthor.com_.png) no-repeat;
     background-size: 180px 180px;
     margin: auto; 
     top: 0; left: 0; bottom: 0; right: 0;
@@ -74,32 +73,6 @@ inset 0 0 0 15px   rgba(255,255,155,.4);
     /* border-radius: 50% has issues on some mobile browsers */
 }
 
-.icon2{
-    position: absolute; 
-    width: 180px;
-    height: 180px;
-    background-size: 180px 180px;
-    margin: auto; 
-    top: 0; left: 0; bottom: 0; right: 0;
-    z-index: 3;
-  
-    -webkit-box-shadow: 
-      0 0 0 10px   rgba(255,255,255,.2),
-      0 0 25px 2px rgba(0,0,0,.3),
-inset 0 0 0 15px   rgba(255,255,155,.4);
-    -moz-box-shadow: 
-      0 0 0 10px   rgba(255,255,255,.2),
-      0 0 25px 2px rgba(0,0,0,.3),
-inset 0 0 0 15px   rgba(255,255,155,.4);
-    box-shadow: 
-      0 0 0 10px   rgba(255,255,255,.2),
-      0 0 25px 2px rgba(0,0,0,.3),
-inset 0 0 0 15px   rgba(255,255,155,.4);
-  
-    -webkit-border-radius: 999px; 
-    -moz-border-radius: 999px;
-    border-radius: 999px;
-}
 
 .pulse1 {
     position: absolute;  
