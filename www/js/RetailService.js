@@ -6,9 +6,7 @@ angular.module('taggingApp')
 
 	o.getProductById = function(id){
 		var deferred = $q.defer();
-		var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0dXMiOiJPSyIsInVuYW1lIjoiY29kb25AYmFieSIsInN0YWZmX2lkIjoyLCJmbmFtZSI6Ik1pY2hhZWwiLCJsbmFtZSI6IkNvcm9sZW9uZSIsInR5cGUiOiJtZ3IiLCJpYXQiOjE0Nzc3NzE1MTUsImlzcyI6InQzNS1hcGkifQ.zWwwDIG7vHAAradjykRAns3L1_6Ky3uXI1vDNX6d9qY";
-
-		$http.get(baseUrl + 'api/product/find/id/' + id, { headers: { token: token }}).then(function(response){
+		$http.get(baseUrl + 'api/product/find/id/' + id).then(function(response){
 			console.log(response);
 			prodId = response.data.id;
 			response.data[0].image = baseUrl + response.data[0].image;

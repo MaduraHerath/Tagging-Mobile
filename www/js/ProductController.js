@@ -1,5 +1,5 @@
 angular.module('taggingApp')
-.controller('ProductCtrl', function($rootScope, $scope, $ionicPopup, $ionicModal, RetailService, ionicToast){
+.controller('ProductCtrl', function($rootScope, $scope, $state, $ionicPopup, $ionicModal, RetailService, LoginService, ionicToast){
 	$scope.product = {};
 	$scope.uid = "";
 
@@ -61,6 +61,11 @@ angular.module('taggingApp')
 			ionicToast.show('Taggin failed...', 'bottom', false, 2500);
 			console.log(err);
 		});
+	}
+
+	$scope.logout = function(){
+		LoginService.logOut();
+		$state.go('login');
 	}
 
 	$scope.productModal = $ionicModal.fromTemplateUrl('templates/products.html',{
